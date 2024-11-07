@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CR Voting Polls</title>
+
+    <style>
+        
+        .container {
+            margin: auto;
+            width: 80%;
+            max-width: 650px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-image: light green;
+            border-radius: 16px;
+            box-shadow: 0px 0px 10px rgba(204, 22, 22, 0.1);
+            text-align: center;
+        position:relative;
+        top: 150px;
+        right: 50px;
+        left: 50px;
+        }
+        h1 {
+            color: #161515;
+        }
+        button {
+            width: 70%;
+            padding: 8px;
+            font-size: 22px;
+            background-color:#0c450e;
+            color: rgb(225, 205, 200);
+            border: 10px;
+            border-radius: 100px;
+            border-style: ridge;
+            cursor: pointer;
+            
+            
+
+        }
+        button:hover {
+            background-color: #3b0879;
+        }
+        .footer {
+            margin-top:7 px;
+            font-size: 20px;
+            font-family:'Times New Roman', Times, serif;
+            text-decoration-color: green;
+            color: rgb(9, 9, 9);
+
+            
+        }
+        .form-container {
+            display:none;
+            text-align: center;
+            margin-top: 20px;
+            font-size: x-large;
+        }
+        label, select, input[type="text"], input[type="email"], input[type="number"], input[type="password"], input[type="file"] {
+            display: block;
+            width: 90%;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+        input[type="file"] {
+            border: none;
+            padding: 5px;
+        }
+        
+    </style>
+</head>
+<body style="background-image:url('kgp.jpg');background-size: cover;">
+    
+    
+  
+    
+
+
+    <div class="container" style="background-color: rgba(38, 220, 204, 0.956) ;">
+        <h1> Welcome To CR Voting Polls <br>Kashmir Government Polytechnic College Sgr.</h1>
+
+        <button 
+         onclick ="window.location.href='on click voter login .html';" > login as voter</button>
+        <button
+            onclick ="window.location.href='on click candidate login .html';" > login as candidate
+            </button>
+        <button onclick="showRegistrationForm()">Register a New User</button>
+        <a href="C:\xampp\htdocs\cr voting project\CR votimng portal\Rule book for candidate.pdf"><br><b><i>check for candidate rules</b></i> </a>
+        <a href="C:\xampp\htdocs\cr voting project\CR votimng portal\Rule book for voters.pdf"><b><br><i>check for voter rules</i></b></a>
+           
+
+                <!-- Registration Form -->
+        <div class="form-container" id="registrationForm">
+            <h2>Welcome New User, Register Here</h2>
+
+            <label for="registerAs"><b>Register As:</b></label>
+            <select id="registerAs" onchange="showFormFields()">
+                <option value=""><b>Select</b></option>
+                <option value="voter"><b>As Voter</b></option>
+                <option value="candidate"><b>As Candidate</b></option>
+            </select>
+
+            <!-- Common Fields -->
+            <div id="commonFields" style="display:none;">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="userId">User ID:</label>
+                <input type="text" id="userId" name="userId" placeholder="Enter your user ID" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <label for="rollNo">Roll No:</label>
+                <input type="text" id="rollNo" name="rollNo" placeholder="Enter your roll number" required>
+
+                <label for="branch">Branch:</label>
+                <select id="branch" name="branch" required>
+                    <option value="">Select Branch</option>
+                    <option value="IT">I.T</option>
+                    <option value="CS">CS</option>
+                    <option value="MLT">MLT</option>
+                    <option value="Civil">Civil</option>
+                    <option value="Wood">Wood</option>
+                    <option value="Leather">Leather</option>
+                    <option value="Mechanical">Mechanical</option>
+                    <option value="Automobile">Automobile</option>
+                    <option value="EC">E&C</option>
+                    <option value="Electrical">Electrical</option>
+                </select>
+
+                <label for="semester">Semester:</label>
+                <select id="semester" name="semester" required>
+                    <option value="">Select Semester</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+
+            <!-- Candidate-Specific Fields -->
+            <div id="candidateFields" style="display:none;">
+                <label for="slogan"><b>Slogan:</b></label>
+                <input type="text" id="slogan" name="slogan" placeholder="Enter your slogan" required>
+
+                <label for="logo">Select Logo Image:</label>
+                <input type="file" id="logo" name="logo" accept="image/*" required>
+            </div>
+
+            <button onclick="submitForm()">Submit</button>
+        </div>
+
+        <div class="footer">
+            
+            <p><i>Project carried out by Team Desk Champions:</i></p>
+            <p>Muteeb Firdous, Mazzam Qalander, Fizah Altaf, Mehnoor Maqsood, Afrooza </p>
+            <p><b>Under the supervision of Er. Mohammad Ibrahim Mir</b></p>
+            
+        </div>
+    </div>
+
+    <script>
+        function showRegistrationForm() {
+            document.getElementById("registrationForm").style.display = "block";
+        }
+
+        function showFormFields() {
+            const registerAs = document.getElementById("registerAs").value;
+            const commonFields = document.getElementById("commonFields");
+            const candidateFields = document.getElementById("candidateFields");
+
+            commonFields.style.display = registerAs ? "block" : "none";
+            candidateFields.style.display = registerAs === "candidate" ? "block" : "none";
+        }
+
+        function submitForm() {
+            const formFields = ["fullName", "email", "userId", "password", "rollNo", "branch", "semester"];
+            if (document.getElementById("registerAs").value === "candidate") {
+                formFields.push("slogan", "logo");
+            }
+
+            // Check if all fields are filled
+            for (const fieldId of formFields) {
+                const field = document.getElementById(fieldId);
+                if (!field.value) {
+                    alert("Please fill out all fields.");
+                    return;
+                }
+            }
+
+            // Redirect to home page (simulate database submission)
+            alert("Registration successful!");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
